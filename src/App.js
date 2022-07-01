@@ -40,7 +40,7 @@ function App() {
 
   return (
     <WeatherContext.Provider value={useWeatherHook()}>
-      <div className="App" style={{ background: style }}>
+      <div className="App" style={{ background: `linear-gradient(150deg, rgba(209, 228, 242, 1) 50%, rgba(${weatherData.colorTemp.r}, ${weatherData.colorTemp.g}, ${weatherData.colorTemp.b}, 1) 100%)` }}>
         {weatherData.error && (
           <ErrorModal
             onClick={weatherData.clearError}
