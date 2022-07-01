@@ -1,0 +1,32 @@
+.error_modul {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+
+.error_message {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 100%;
+    max-height: 240px;
+    height: 300px;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    overflow-x: auto;
+    border-top: 2px solid var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.error_code {
+    padding: 1rem 0;
+}
+
+.error_footer {
+    display: flex;
+    width: 100%;
+    position: absolute;
+    bottom: 50px;
+}

@@ -1,0 +1,37 @@
+.modal_background {
+    display: flex;
+    position: fixed; 
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;    
+    top:0;
+    left:0
+}
+
+.modal {
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    width: 650px;
+    min-height: 40vh;
+    top:20vh;
+    right: calc((100% - 650px) / 2);
+    z-index: 100;  
+    margin: 0 auto;
+    padding: 1rem 4rem;
+    background-color: rgba(255, 255,255,1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  }
+  
+  @media screen and (max-width: 576px) {
+      .modal {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          width: 100%;
+          top: 10vh;
+          right:0;
+          padding: 1rem;
+      }
+  }

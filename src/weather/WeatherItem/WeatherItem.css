@@ -1,0 +1,39 @@
+.weather_item {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    padding: 15px;
+}
+
+.weather_item h4 {
+    color: #5d828b;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.weather_item p {
+    color: #fff;
+    font-weight: 700;
+    font-size: 42px;
+    text-align: center;
+    position: relative;
+}
+
+.weather_item p span {
+    position: absolute;
+    top:7px;
+    font-size: 20px;
+}
+
+.weather_item img {
+    width: 80px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 560px) {
+    .weather_item {
+        width: 100%;
+        padding: 10px;
+    }
+}

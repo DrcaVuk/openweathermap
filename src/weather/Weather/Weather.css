@@ -1,0 +1,44 @@
+.weather {
+    display: flex;
+    flex-direction: column;
+}
+
+.weather_average {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.weather_average .weather_date {
+    color: #5d828b;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.weather_average .average {
+    color: #fff;
+    font-size: 72px;
+    font-weight: 700;
+    position: relative;
+    text-align: center;
+}
+
+.weather_average .average span {
+    position: absolute;
+    top:10px;
+    font-size: 30px;
+}
+
+ 
+.weather_list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+@media screen and (max-width: 560px) {
+    .weather_list {
+        overflow-y: scroll;
+    }
+}
