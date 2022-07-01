@@ -1,4 +1,4 @@
-const datePars = (date1, date2) => {
+const dateHelpers = (date1, date2) => {
     let d1, d2 = '';
     d1 = date1.month;
     //if the months are different, point to both places.
@@ -16,4 +16,4 @@ const datePars = (date1, date2) => {
     return `${d1} - ${d2}`;
 }
 
-export default datePars;
+export default dateHelpers;

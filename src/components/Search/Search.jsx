@@ -1,16 +1,21 @@
+import { useState, useContext } from "react";
+import { WeatherContext } from "../../shared/context/weather-context";
 import { AiOutlineSearch } from "react-icons/ai";
 
 import "./Search.css";
 
-const Search = (props) => {
+const Search = () => {
+  const [countryCode, setCountryCode] = useState("");
+  const [city, setCity] = useState("");
+  const weatherData = useContext(WeatherContext);
   return (
     <div className="search">
       <form>
         <div className="form-control">
           <select
-            value={props.countryCode}
+            value={countryCode}
             onChange={(e) => {
-              props.setCountryCode(e.target.value);
+              setCountryCode(e.target.value);
             }}
           >
             <option value=""></option>
@@ -24,18 +29,18 @@ const Search = (props) => {
             <input
               type="text"
               name="search_city"
-              value={props.city}
+              value={city}
               onChange={(e) => {
-                props.setCity(e.target.value);
+                setCity(e.target.value);
               }}
               onKeyDown={(e) => {
-                if (e.key === "Enter") props.fetchData();
+                if (e.key === "Enter") weatherData.fetchData(city, countryCode);
               }}
               placeholder="Enter city name"
             />
             <AiOutlineSearch
               onClick={() => {
-                props.fetchData();
+                weatherData.fetchData(city, countryCode);
               }}
             />
           </div>
