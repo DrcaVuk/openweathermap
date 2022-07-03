@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useDateTime } from "./date-hook";
 import { useHttpClient } from "./http-hook";
 import dateHelpers from "../helpers/dateHelpers";
@@ -9,7 +9,7 @@ export const useWeatherHook = () => {
   const [dateWeather, setDateWeather] = useState("");
   const [weatherList, setWeatherList] = useState([]);
   const [averageTemp, setAverageTemp] = useState("");
-  const [colorTemp, setColorTemp] = useState({ r: 224, g: 219, b: 155 });
+  const [colorTemp, setColorTemp] = useState([224,219,155]);
 
   const fetchData = useCallback(async (city, countryCode) => {
     if (city === "" || countryCode === "") return;
@@ -22,14 +22,14 @@ export const useWeatherHook = () => {
       let itemTime = new Date(item.dt_txt);
       if (itemTime.getHours() === 12) {
         average += item.main.temp;
-        filterData.push({
+         filterData.push({
           day: dataTime.getDay(item.dt_txt),
           temp: item.main.temp.toFixed(0),
           icon: item.weather[0].icon,
         });
       }
       //setovati prosecnu temperaturu
-      setAverageTemp((average / (filterData.length - 1)).toFixed(0));
+      setAverageTemp((average / (filterData.length)).toFixed(0));
       //datum od kad do kad
       setDateWeather(
         dateHelpers(
@@ -37,12 +37,6 @@ export const useWeatherHook = () => {
           dataTime.getFullDate(res.data.list[res.data.list.length - 1].dt_txt)
         )
       );
-      //setovati boju gradianta
-      setColorTemp({
-        r: handlerColor(255, 16),
-        g: handlerColor(148, 57),
-        b: handlerColor(86, 136),
-      });
     });
     setWeatherList(filterData);
   }, []);
@@ -51,8 +45,19 @@ export const useWeatherHook = () => {
     let color = 0;
     let procent = ((80 - averageTemp) * 100) / 80 / 100;
     color = (col1 + col2) / (2 * procent);
-    return color;
+    return color.toFixed(0);
   };
+
+  useEffect(() => {
+    //setovati boju gradianta
+    if(!averageTemp) return;
+    let color = [
+      handlerColor(255, 16),
+      handlerColor(148, 57),
+      handlerColor(86, 136),
+    ];
+    setColorTemp(color);
+  }, [averageTemp]);
 
   return {
     weatherList,

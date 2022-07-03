@@ -6,25 +6,27 @@ import "./Weather.css";
 const Weather = () => {
   const weatherData = useContext(WeatherContext);
   return (
-    <div className="weather">
-      <div className="weather_average">
-        <p className="weather_date">{weatherData.dateWeather}</p>
-        <p className="average">
-          {weatherData.averageTemp}
-          <span>°C</span>
-        </p>
+      <div className="weather">
+        <div className="weather_average">
+          <p className="weather_date">{weatherData.dateWeather}</p>
+          {weatherData.averageTemp && (
+            <p className="average">
+              {weatherData.averageTemp}
+              <span>°C</span>
+            </p>
+          )}
+        </div>
+        <div className="weather_list">
+          {weatherData.weatherList.map((data, index) => (
+            <WeatherItem
+              key={index}
+              day={data.day}
+              temp={data.temp}
+              icon={data.icon}
+            />
+          ))}
+        </div>
       </div>
-      <div className="weather_list">
-        {weatherData.weatherList.map((data, index) => (
-          <WeatherItem
-            key={index}
-            day={data.day}
-            temp={data.temp}
-            icon={data.icon}
-          />
-        ))}
-      </div>
-    </div>
   );
 };
 

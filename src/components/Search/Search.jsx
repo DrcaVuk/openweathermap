@@ -36,7 +36,7 @@ const Search = () => {
               onKeyDown={(e) => {
                 if (e.key === "Enter") weatherData.fetchData(city, countryCode);
               }}
-              placeholder="Enter city name"
+              placeholder="Plase enter your location"
             />
             <AiOutlineSearch
               onClick={() => {

@@ -4,7 +4,7 @@ export const WeatherContext = createContext({
     weatherList: [],
     averageTemp: null,
     dateWeather: null,
-    colorTemp: null,
+    colorTemp: [],
     fetchDate: () => {},
     isLoading: null,
     error: null,
