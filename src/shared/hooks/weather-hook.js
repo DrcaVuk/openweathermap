@@ -9,7 +9,7 @@ export const useWeatherHook = () => {
   const [dateWeather, setDateWeather] = useState("");
   const [weatherList, setWeatherList] = useState([]);
   const [averageTemp, setAverageTemp] = useState("");
-  const [colorTemp, setColorTemp] = useState([224,219,155]);
+  const [colorTemp, setColorTemp] = useState([224, 219, 155]);
 
   const fetchData = useCallback(async (city, countryCode) => {
     if (city === "" || countryCode === "") return;
@@ -18,19 +18,19 @@ export const useWeatherHook = () => {
     );
     let filterData = [];
     let average = 0;
-    res.data.list.filter((item) => {
+    res.data.list.map((item) => {
       let itemTime = new Date(item.dt_txt);
       if (itemTime.getHours() === 12) {
         average += item.main.temp;
-         filterData.push({
+        filterData.push({
           day: dataTime.getDay(item.dt_txt),
           temp: item.main.temp.toFixed(0),
           icon: item.weather[0].icon,
         });
       }
-      //setovati prosecnu temperaturu
-      setAverageTemp((average / (filterData.length)).toFixed(0));
-      //datum od kad do kad
+
+      setAverageTemp((average / filterData.length).toFixed(0));
+
       setDateWeather(
         dateHelpers(
           dataTime.getFullDate(res.data.list[0].dt_txt),
@@ -38,6 +38,7 @@ export const useWeatherHook = () => {
         )
       );
     });
+
     setWeatherList(filterData);
   }, []);
 
@@ -49,8 +50,7 @@ export const useWeatherHook = () => {
   };
 
   useEffect(() => {
-    //setovati boju gradianta
-    if(!averageTemp) return;
+    if (!averageTemp) return;
     let color = [
       handlerColor(255, 16),
       handlerColor(148, 57),

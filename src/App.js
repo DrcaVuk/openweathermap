@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import { WeatherContext } from "./shared/context/weather-context";
 import { useWeatherHook } from "./shared/hooks/weather-hook";
 import axios from "axios";
 import { api_url } from "./variable";
 
-import WeatherOne from "./weather/WeatherOne/WeatherOne";
+import Weather from "./weather/Weather/Weather";
 
 import "./App.css";
 
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <WeatherContext.Provider value={useWeatherHook()}>
-      <WeatherOne />
+      <Weather />
     </WeatherContext.Provider>
   );
 }

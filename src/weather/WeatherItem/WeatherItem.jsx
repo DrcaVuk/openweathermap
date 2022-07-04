@@ -8,7 +8,7 @@ const WeatherItem = (props) => {
         {props.temp}
         <span>°C</span>
       </p>
-      <img src={`http://openweathermap.org/img/wn/${props.icon}@2x.png`} />
+      <img src={`http://openweathermap.org/img/wn/${props.icon}@2x.png`} alt="weather icon"/>
     </div>
   );
 };

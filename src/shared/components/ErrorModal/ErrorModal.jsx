@@ -15,7 +15,7 @@ const ErrorModal = (props) => {
           <p>{props.error}</p>
         </div>
         <div className={classed.error_footer}>
-          <button type="button" onClick={props.onClick}>
+          <button type="button" onClick={props.onClick} data-testid="clearError">
             Close
           </button>
         </div>

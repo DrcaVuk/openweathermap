@@ -28,7 +28,7 @@ export const useHttpClient = () => {
         if(axios.isCancel(err)) {
           console.log(err.message)
         } else {
-          setError(err.message);
+          setError("Message: " + err.response.data.message.charAt(0).toUpperCase() + err.response.data.message.slice(1));
         }
         throw err;
       });

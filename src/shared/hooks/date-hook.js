@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { days, months } from "../../variable"; 
 
 export const useDateTime = () => {

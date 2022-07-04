@@ -1,0 +1,132 @@
+.search {
+    width: 100%;
+    max-width: 560px;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    border: 1px solid #fff;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-control_select {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 120px;
+    border: 1px solid black;
+    padding: 5px 11px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-control_select .form-control_flag {
+    width: 50%;
+    max-width: 30px;
+    height: auto;
+}
+
+.form-control_select .form-control_flag img {
+    border: 1px solid #d0d0d0;
+}
+
+.form-control_select select {
+    width: 50%;
+    border: none;
+    overflow: none;
+    background: transparent;
+}
+
+.form-control_select select:focus-visible,
+.form-control_input input:focus-visible {
+    outline: none;
+}
+
+
+.form-control_input {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    border: 1px solid black;
+    padding: 5px 11px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.form-control_input input {
+    width: 100%;
+    border: none;
+    background: transparent;
+}
+
+.form-control_input input:focus-visible,
+.form-control_input input:focus {
+    background-color: #fff !important;
+}
+
+.form-control_input:hover,
+.form-control_select:hover {
+    border: 1px solid #aaa9b1;
+}
+
+.form-control_input input::placeholder,
+.form-control_input:hover svg,
+.form-control_select:hover select {
+    color: #aaa9b1;
+}
+
+.form-control_input button {
+    background: none;
+    border: none;
+}
+
+.form-control_input button svg {
+    width: 22px;
+    height: 22px;
+}
+
+.error-message {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 560px;
+
+    position: absolute;
+    bottom: 20px;
+    z-index: 100;
+    color: red;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.error-message p {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media screen and (max-width: 560px) {
+    .search {
+        border-radius: 0;
+        padding: 10px 5px;
+        position: fixed;
+        top: 0;
+        z-index: 100;
+    }
+
+    .error-message {
+        position: fixed;
+        left: 0;
+        right: 0;
+    }
+}

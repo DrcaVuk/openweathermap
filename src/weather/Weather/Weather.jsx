@@ -1,11 +1,28 @@
 import React, { useContext } from "react";
 import { WeatherContext } from "../../shared/context/weather-context";
-import WeatherItem from "../WeatherItem/WeatherItem";
+
+import Search from "../Search/Search";
+import WeatherList from "../WeatherList/WeatherList";
+import ErrorModal from "../../shared/components/ErrorModal/ErrorModal";
+
 import "./Weather.css";
 
 const Weather = () => {
   const weatherData = useContext(WeatherContext);
   return (
+    <div
+      className="weather-flux"
+     style={{
+        background: `linear-gradient(150deg, rgba(209, 228, 242, 1) 50%, rgba(${weatherData.colorTemp[0]}, ${weatherData.colorTemp[1]}, ${weatherData.colorTemp[2]}, 1) 100%)`,
+      }}
+    >
+      {weatherData.error && (
+        <ErrorModal
+          onClick={weatherData.clearError}
+          error={weatherData.error}
+        />
+      )}
+      <Search />
       <div className="weather">
         <div className="weather_average">
           <p className="weather_date">{weatherData.dateWeather}</p>
@@ -16,17 +33,9 @@ const Weather = () => {
             </p>
           )}
         </div>
-        <div className="weather_list">
-          {weatherData.weatherList.map((data, index) => (
-            <WeatherItem
-              key={index}
-              day={data.day}
-              temp={data.temp}
-              icon={data.icon}
-            />
-          ))}
-        </div>
+      <WeatherList />
       </div>
+    </div>
   );
 };
 
