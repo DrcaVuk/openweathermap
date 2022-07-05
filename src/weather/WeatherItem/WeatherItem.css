@@ -20,7 +20,7 @@
     position: relative;
 }
 
-.weather_item p span {
+.weather_item p .item_unit {
     position: absolute;
     top:7px;
     font-size: 20px;

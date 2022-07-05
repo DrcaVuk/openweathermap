@@ -35,7 +35,7 @@
     text-align: center;
 }
 
-.weather_average .average span {
+.weather_average .average .item_unit {
     position: absolute;
     top:10px;
     font-size: 30px;

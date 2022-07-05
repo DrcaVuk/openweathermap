@@ -1,43 +1,37 @@
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import { act } from "react-dom/test-utils";
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import ErrorModal from "./ErrorModal";
 
-let container = null;
-beforeEach(() => {
-  container = document.createElement("div");
-  document.body.appendChild(container);
-});
-
-afterEach(() => {
-  unmountComponentAtNode(container);
-  container.remove();
-  container = null;
-});
-
-it("ErrorModal component", () => {
-  act(() => {
-    render(<ErrorModal />, container);
+describe('test ErrorModal component', () => {
+  test('render text "Error" and "Close"', () => {
+    render(<ErrorModal/>);
+    const errorElement = screen.getByText("Error");
+    const closeElement = screen.getByText("Close");
+    const buttonElement = screen.getByTestId("clearError");
+    expect(errorElement).toBeInTheDocument();
+    expect(closeElement).toBeInTheDocument();
+    expect(buttonElement).toBeInTheDocument();
   });
-  expect(container.textContent).toBe("ErrorClose");
 
-  act(() => {
-    render(<ErrorModal error="component test" />, container);
-  });
-  expect(container.textContent).toBe("Errorcomponent testClose");
+  test('render props error message', () => {
+    render(<ErrorModal error="test message" />);
+    const errorElement = screen.getByText('test message');
+    expect(errorElement).toBeInTheDocument();
+  })
 
-  it("Button onClick", () => {
-    const onClick = jest.fn();
-    act(() => {
-      render(<ErrorModal onClick={onClick}/>, container);
-    });
+  test('testing button was not clicked', () => {
+    const handler = jest.fn();
+    render(<ErrorModal onClick={handler} />);
+    const buttonElement = screen.getByRole('button');
+    expect(handler.mock.calls.length).toEqual(0);
+  })
 
-    act(() => {
-        container
-        .querySelector("data-testid=['clearError']")
-      .dispatchEvent(new MouseEvent("click", { bubbles: true }));
-    })
-  });
-  expect(onClick).toHaveBeenCalledWith('clearError');
-});
+  test('testing button was clicked', () => {
+    const handler = jest.fn();
+    render(<ErrorModal onClick={handler} />);
+    const buttonElement = screen.getByRole('button');
+    userEvent.click(buttonElement);
+    expect(handler.mock.calls.length).toEqual(1);
+  })
+})

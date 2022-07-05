@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { WeatherContext } from "../../shared/context/weather-context";
-import { useFormik, Field } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { AiOutlineSearch } from "react-icons/ai";
@@ -11,8 +11,6 @@ import usFlag from "../../assets/flags/us.svg";
 import "./Search.css";
 
 const Search = () => {
-  // const [countryCode, setCountryCode] = useState("");
-  // const [city, setCity] = useState("");
   const [flag, setFlag] = useState(null);
   const weatherData = useContext(WeatherContext);
 
@@ -26,17 +24,11 @@ const Search = () => {
       countryCode: Yup.string().min(2).required("Plase select county code!"),
     }),
     onSubmit: (values) => {
-      console.log(values);
       weatherData.fetchData(values.city, values.countryCode);
     },
   });
 
-  // const handlerData = () => {
-  //   weatherData.fetchData(city, countryCode);
-  // };
-
   useEffect(() => {
-    console.log(formik.values);
     switch (formik.values.countryCode) {
       case "gb":
         setFlag(gbFlag);
@@ -64,6 +56,7 @@ const Search = () => {
             name="countryCode"
             onChange={formik.handleChange}
             onBlur={formik.onBlur}
+            data-testid="select-option"
           >
             <option value=""></option>
             <option value="gb" label="gb">
@@ -85,6 +78,7 @@ const Search = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             placeholder="Plase enter your location"
+            data-testid="input-test"
           />
           <button type="submit">
             <AiOutlineSearch />

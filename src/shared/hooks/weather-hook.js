@@ -13,6 +13,8 @@ export const useWeatherHook = () => {
 
   const fetchData = useCallback(async (city, countryCode) => {
     if (city === "" || countryCode === "") return;
+    setAverageTemp('');
+
     let res = await sendRequest(
       `/data/2.5/forecast?q=${city},${countryCode}&units=metric&`
     );
@@ -28,7 +30,6 @@ export const useWeatherHook = () => {
           icon: item.weather[0].icon,
         });
       }
-
       setAverageTemp((average / filterData.length).toFixed(0));
 
       setDateWeather(

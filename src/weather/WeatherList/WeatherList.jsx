@@ -6,17 +6,17 @@ import "./WeatherList.css";
 const WeatherList = () => {
   const weatherData = useContext(WeatherContext);
   return (
-      
-        <div className="weather_list">
-          {weatherData.weatherList.map((data, index) => (
-            <WeatherItem
-              key={index}
-              day={data.day}
-              temp={data.temp}
-              icon={data.icon}
-            />
-          ))}
-        </div>
+    <div className="weather_list" data-testid="weather_list-test">
+      {weatherData.weatherList.map((data, index) => (
+        <WeatherItem
+          key={index}
+          day={data.day}
+          temp={data.temp}
+          icon={data.icon}
+          data-testid="weater_item-test"
+        />
+      ))}
+    </div>
   );
 };
 

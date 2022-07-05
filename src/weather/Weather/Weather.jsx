@@ -4,6 +4,7 @@ import { WeatherContext } from "../../shared/context/weather-context";
 import Search from "../Search/Search";
 import WeatherList from "../WeatherList/WeatherList";
 import ErrorModal from "../../shared/components/ErrorModal/ErrorModal";
+import LoadingSpinner from "../../shared/components/LoadingSpinner/LoadingSpinner";
 
 import "./Weather.css";
 
@@ -23,18 +24,20 @@ const Weather = () => {
         />
       )}
       <Search />
-      <div className="weather">
+      {weatherData.isLoading && <LoadingSpinner/>}
+      {!weatherData.isLoading && <div className="weather" data-testid="weater-test">
         <div className="weather_average">
           <p className="weather_date">{weatherData.dateWeather}</p>
-          {weatherData.averageTemp && (
+          {weatherData.averageTemp && 
             <p className="average">
               {weatherData.averageTemp}
-              <span>°C</span>
+              <span className="item_unit">°C</span>
             </p>
-          )}
+          }
         </div>
-      <WeatherList />
-      </div>
+        
+        {weatherData.averageTemp && <WeatherList />}
+      </div>}
     </div>
   );
 };

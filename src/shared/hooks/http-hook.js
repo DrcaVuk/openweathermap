@@ -4,7 +4,7 @@ import { api_key } from "../../variable";
 
 export const useHttpClient = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   const activeHttpRequests = useRef([]);
 
